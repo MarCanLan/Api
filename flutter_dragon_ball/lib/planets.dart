@@ -30,14 +30,6 @@ class _PlanetsPageState extends State<PlanetsPage> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           }
-          if (snapshot.hasError) {
-            return Center(
-              child: Text(
-                'Error: ${snapshot.error}',
-                style: const TextStyle(color: Colors.red),
-              ),
-            );
-          }
 
           if (snapshot.hasData) {
             return ListView.builder(

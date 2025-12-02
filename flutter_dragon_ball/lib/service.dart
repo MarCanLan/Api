@@ -15,29 +15,17 @@ class CharacterService {
     final url = Uri.parse('$listApiUrl?limit=500');
     final response = await http.get(url);
 
-    if (response.statusCode == 200) {
-      final jsonBody = jsonDecode(response.body);
-      final List<dynamic> results = jsonBody['items'] ?? [];
-      return results.map((e) => Character.fromJson(e)).toList();
-    } else {
-      throw Exception(
-        'Error al cargar la lista de personajes: ${response.statusCode}',
-      );
-    }
+    final jsonBody = jsonDecode(response.body);
+    final List<dynamic> results = jsonBody['items'] ?? [];
+    return results.map((e) => Character.fromJson(e)).toList();
   }
 
   Future<Character> getCharacterDetails(int id) async {
     final url = Uri.parse('$detailBaseUrl/$id');
     final response = await http.get(url);
 
-    if (response.statusCode == 200) {
-      final jsonBody = jsonDecode(response.body);
-      return Character.fromJson(jsonBody as Map<String, dynamic>);
-    } else {
-      throw Exception(
-        'Error al cargar detalles del personaje $id: ${response.statusCode}',
-      );
-    }
+    final jsonBody = jsonDecode(response.body);
+    return Character.fromJson(jsonBody as Map<String, dynamic>);
   }
 
   Future<List<OriginPlanet>> getPlanets() async {

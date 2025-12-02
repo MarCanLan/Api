@@ -34,17 +34,16 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Personajes de Dragon Ball'),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.public),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const PlanetsPage()),
-              );
-            },
-          ),
-        ],
+
+        leading: IconButton(
+          icon: const Icon(Icons.public),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const PlanetsPage()),
+            );
+          },
+        ),
       ),
       body: RefreshIndicator(
         onRefresh: _refreshCharacters,
